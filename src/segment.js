@@ -19,7 +19,7 @@ router.post('/addNewSegment', (req, res) => {
 });
 
 router.get('/getListSegment', (req, res) => {
-  db.run('SELECT * FROM segments', [],  (err, rows) => {
+  db.all('SELECT * FROM segments', [],  (err, rows) => {
     if (err) {
       res.status(500).send(err.message);
     }else {
@@ -45,3 +45,25 @@ router.delete('/deleteSegment', (req, res) => {
 });
 
 export default router;
+/**
+ * @swagger
+ * /segments:
+ *   post:
+ *     summary: Создать новый сегмент.
+ *     description: Создать новый сегмент в базе данных.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Segment'
+ *     responses:
+ *       '201':
+ *         description: Сегмент успешно создан.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Segment'
+ *       '400':
+ *         description: Неверный запрос.
+ */

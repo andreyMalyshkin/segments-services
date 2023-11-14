@@ -36,6 +36,7 @@ router.post('/addClientToSegment', (req, res) => {
 
 router.get('/userSegments/:userId', (req, res) => {
   const userId = req.params.userId;
+  console.log(userId)
 
   const sql = `
     SELECT s.id, s.name
